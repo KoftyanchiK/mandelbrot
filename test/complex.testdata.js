@@ -1,0 +1,17 @@
+// const Complex = require('../src/js/complex');
+import Complex from '../src/js/complex';
+
+export const data = [
+  {
+    in: new Complex(4, 3),
+    op: 'add',
+    param: new Complex(-3, -2),
+    expectedResult: '1 + i'
+  },
+  {
+    in: new Complex(0, 3),
+    op: "add",
+    param: new Complex(0, -2),
+    expectedResult: "0 + i"
+  }
+];
