@@ -37,8 +37,9 @@ export default class Complex {
     console.log(`${complex.re} + ${complex.im}i`);
   }
   static getStringValue(complex) {
-    let ret = '';
-    
+    let re = '';
+    if(complex.re !== 0)
+      re += complex.re;
     let im = null;
     switch(complex.im) {
       case 0:
@@ -51,9 +52,7 @@ export default class Complex {
         im = Math.abs(complex.im);
     }
     debugStringValue('Imaginary part is: %O', im);
-    let sign = '';
-
-    return `${complex.re} ${complex.im > 0 ? '+' : '-'} ${im}i`;
+    return `${re}${complex.im > 0 ? ' +' : ' -'} ${im}i`;
   }
   static isEqual(complex) {
     return this.re === complex.re && this.im === complex.im;
