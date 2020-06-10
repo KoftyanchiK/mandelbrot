@@ -12,7 +12,7 @@ export const data = [
     in: new Complex(0, 3),
     op: "add",
     param: new Complex(0, -2),
-    expectedResult: "0 + i"
+    expectedResult: "i"
   },
   {
     in: new Complex(4, 2),
