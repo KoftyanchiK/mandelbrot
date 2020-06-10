@@ -9,7 +9,7 @@ const should = chai.should();
 
 describe('Complex numbers class', () => {
   stringValueTestsData.forEach(test => {
-    it(`Shows string value correctly for ${test.in} => ${test.expectedResult} `, (done) => {
+    it(`Shows string value correctly for ${JSON.stringify(test.in)} => ${test.expectedResult}`, (done) => {
       const textResult = test.in.getStringValue();
       textResult.should.eql(test.expectedResult);
       done();
