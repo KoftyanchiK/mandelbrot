@@ -49,10 +49,13 @@ export default class Complex {
         im = '';
         break;
       default:
-        im = Math.abs(complex.im);
+        im = `${Math.abs(complex.im)}`;
     }
+    let sign = '';
+    if(re)
+      sign = complex.im > 0 ? ' + ' : ' - ';
     debugStringValue('Imaginary part is: %O', im);
-    return `${re}${complex.im > 0 ? ' +' : ' -'} ${im}i`;
+    return `${re}${sign}${im}i`;
   }
   static isEqual(complex) {
     return this.re === complex.re && this.im === complex.im;
