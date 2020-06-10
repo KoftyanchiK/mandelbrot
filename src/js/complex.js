@@ -42,6 +42,7 @@ export default class Complex {
     let im = null;
     switch(complex.im) {
       case 0:
+        return `${complex.re}`;
       case 1:
       case -1:
         im = '';
