@@ -6,6 +6,7 @@ const debugSub = Debug('fractals:complex:sub');
 const debugMul = Debug('fractals:complex:mul');
 const debugDiv = Debug('fractals:complex:div');
 const debugParse = Debug('fractals:complex:parse');
+const debugStringValue = Debug('fractals:complex:stringValue');
 
 function parse(a, b) {
   debugParse('a: ', a, 'b: ', b);
@@ -42,11 +43,13 @@ export default class Complex {
     switch(complex.im) {
       case 0:
       case 1:
+      case -1:
         im = '';
         break;
       default:
         im = Math.abs(complex.im);
     }
+    debugStringValue('Imaginary part is: %O', im);
     let sign = '';
 
     return `${complex.re} ${complex.im > 0 ? '+' : '-'} ${im}i`;
