@@ -108,8 +108,9 @@ export default class Complex {
       const res = {};
       res.re = (this.re * complex.re + this.im * complex.im) / (Math.pow(complex.re, 2) + Math.pow(complex.im, 2));
       res.im = (this.im * complex.re - this.re * complex.im) / (Math.pow(complex.re, 2) + Math.pow(complex.im, 2));
-      // const result = complex.mul(this.getReciprocal());
-      return new Complex(res);
+      const result = new Complex(res);
+      debugDiv('Result: %O', result);
+      return result;
     }
   }
   getReciprocal() {
