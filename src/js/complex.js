@@ -54,6 +54,8 @@ export default class Complex {
     let sign = '';
     if(re)
       sign = complex.im > 0 ? ' + ' : ' - ';
+    else
+      sign = complex.im > 0 ? '' : '-';
     debugStringValue('Imaginary part is: %O', im);
     return `${re}${sign}${im}i`;
   }
