@@ -1,7 +1,22 @@
 // const Complex = require('../src/js/complex');
 import Complex from '../src/js/complex';
 
-export const data = [
+export const stringValueTestsData = [
+  {
+    in: new Complex(4, 3),
+    expectedResult: '4 + 3i'
+  },
+  {
+    in: new Complex(0, 3),
+    expectedResult: '3i'
+  },
+  {
+    in: new Complex(25, 0),
+    expectedResult: '25'
+  }
+];
+
+export const opData = [
   {
     in: new Complex(4, 3),
     op: 'add',

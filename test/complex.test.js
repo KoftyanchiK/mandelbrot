@@ -1,14 +1,21 @@
 // const data = require('./complex.testdata');
 // const Complex = require('../src/js/complex');
 // const {it} = require('chai');
-import { data } from './complex.testdata';
+import { stringValueTestsData, opData } from './complex.testdata';
 import Complex from '../src/js/complex';
 import { it, describe } from 'mocha';
 import chai from 'chai';
 const should = chai.should();
 
 describe('Complex numbers class', () => {
-  data.forEach(test => {
+  stringValueTestsData.forEach(test => {
+    it(`Shows string value correctly for ${test.in} => ${test.expectedResult} `, (done) => {
+      const textResult = test.in.getStringValue();
+      textResult.should.eql(test.expectedResult);
+      done();
+    });
+  });
+  opData.forEach(test => {
     const input = test.in;
     const operation = test.op;
     const parameter = test.param;
