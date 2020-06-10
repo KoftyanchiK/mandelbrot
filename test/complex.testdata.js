@@ -25,5 +25,11 @@ export const data = [
     op: "div",
     param: new Complex(3, -4),
     expectedResult: "3 + 4i"
+  },
+  {
+    in: new Complex(3, -2),
+    op: "div",
+    param: new Complex(0, 1),
+    expectedResult: "-2 - 3i"
   }
 ];
