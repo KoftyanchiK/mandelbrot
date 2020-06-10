@@ -99,18 +99,20 @@ export default class Complex {
     if (complex.im === 0) 
       return new Complex(this.re / complex.re, this.im / complex.re);
     else {
-      const c = new Complex(complex);
       debugDiv('Complex in division: ', Complex.getStringValue(complex));
       debugDiv('this: ', Complex.getStringValue(this));
       debugDiv('Reciprocal of this: ', Complex.getStringValue(this.getReciprocal()));
-      const result = c.mul(this.getReciprocal());
-      return new Complex(result);
+      const res = {};
+      res.re = (this.re * complex.re + this.im * complex.im) / (Math.pow(complex.re, 2) + Math.pow(complex.im, 2));
+      res.im = (this.im * complex.re - this.re * complex.im) / (Math.pow(complex.re, 2) + Math.pow(complex.im, 2));
+      // const result = complex.mul(this.getReciprocal());
+      return new Complex(res);
     }
   }
   getReciprocal() {
     const result = {};
     result.re = this.re / (this.re * this.re + this.im * this.im);
-    result.im = - (this.im / (this.re * this.re + this.im * this.im));
+    result.im = -(this.im / (this.re * this.re + this.im * this.im));
     return new Complex(result);
   }
 };
