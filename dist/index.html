@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"/>
     <title>Fractals</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"></head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </head>
   <body>
+    <header class='row container valign-wrapper'>
+      <div class='input-field col s6'>
+        <select id='impSelect'>
+          <option value='' selected disabled>Select implementation</option>
+          <option value='class'>Class implementation</option>
+          <option value='proto'>Proto implementation</option>
+          <option value='plain'>Plain implementation</option>
+        </select>
+        <label>Select implementation</label>
+      </div>
+      <div class='col s2 offset-s1'>
+        <button class='btn large'>Start</button>
+      </div>
+    </header>
+    <div class="divider"></div>
+    <div id='app' class='container row center-align'>
+
+    </div>
   <script src="js/main.js"></script></body>
 </html>
