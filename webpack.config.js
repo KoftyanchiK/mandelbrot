@@ -5,7 +5,9 @@ const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
-  entry: './src/js/index.js',
+  entry: {
+    main: './src/js/index.js',
+  },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
@@ -17,12 +19,13 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      template: './src/index.hbs',
       title: 'Fractals',
       filename: '../index.html'
     }),
   ],
   output: {
-    filename: 'main.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist', 'js'),
   },
   module: {
@@ -33,6 +36,14 @@ module.exports = {
           'style-loader',
           'css-loader',
         ],
+      },
+      {
+        test: /\.worker\.js$/,
+        use: { loader: 'worker-loader' }
+      },
+      {
+        test: /\.hbs$/,
+        loader: "handlebars-loader"
       },
     ]
   }
