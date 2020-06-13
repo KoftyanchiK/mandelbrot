@@ -7,19 +7,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
   <body>
-    <header class='row container valign-wrapper'>
-      <div class='input-field col s6'>
-        <select id='impSelect'>
-          <option value='' selected disabled>Select implementation</option>
-          <option value='class'>Class implementation</option>
-          <option value='proto'>Proto implementation</option>
-          <option value='plain'>Plain implementation</option>
-        </select>
-        <label>Select implementation</label>
-      </div>
-      <div class='col s2 offset-s1'>
-        <button class='btn large'>Start</button>
-      </div>
+    <header class='row container center-align'>
+      <form action="#" class='col s12 valign-wrapper center-align'>
+        <div class='input-field col s6 offset-s1'>
+          <select id='impSelect' autocomplete="off">
+            <option value='' selected disabled>Select implementation</option>
+            <option value='class'>Class implementation</option>
+            <option value='proto'>Proto implementation</option>
+            <option value='plain'>Plain implementation</option>
+          </select>
+          <label>Select implementation</label>
+        </div>
+        <div class='col s2 offset-s1'>
+          <button class='btn large'>Start</button>
+        </div>
+      </form>
     </header>
     <div class="divider"></div>
     <div id='app' class='container row center-align'>
