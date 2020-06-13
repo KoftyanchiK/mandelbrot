@@ -2,6 +2,7 @@ import Debug from 'debug';
 import ClassImpWorker from './workers/classImp.worker';
 import ProtoImpWorker from './workers/protoImp.worker';
 import PlainImpWorker from './workers/plainImp.worker';
+import { showModal } from './modal';
 import '../css/style.css';
 
 const debug = Debug('fractals:main')
@@ -21,7 +22,9 @@ app.appendChild(canvas);
 const ctx = canvas.getContext('2d');
 ctx.fillStyle = 'rgb(0,0,0)';
 
-
+// Elements
+const startButton = document.getElementById('start');
+const stopButton = document.getElementById('stop');
 const impSelect = document.getElementById('impSelect');
 let impSelectInstance = M.FormSelect.init(impSelect, {});
 
@@ -33,16 +36,22 @@ const workers = {
 
 let worker = workers.class;
 
-impSelect.addEventListener('change', async (e) => {
-  const selectedValue = e.target.value;
+startButton.addEventListener('click', (e) => {
+  const selectedValue = impSelectInstance.getSelectedValues()[0];
+  if(selectedValue === '') {
+    showModal('No implementation selected', 'Please, select implementation to draw mandelbrot set');
+    return;
+  }
   worker.removeEventListener('message', () => {
-    connsole.log('removed');
+    console.log('removed');
   });
   worker = workers[selectedValue];
   worker.addEventListener('message', function(e) {
     console.log('Worker said: ', e.data);
   }, false);
 });
+
+
 
 // function runImplementation(implementation) {
 //   const belongsFunc = belongFunctions[implementation];
