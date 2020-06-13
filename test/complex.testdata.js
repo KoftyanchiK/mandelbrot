@@ -1,5 +1,5 @@
 // const Complex = require('../src/js/complex');
-import Complex from '../src/js/complex';
+import Complex from '../src/js/lib/complex';
 
 export const stringValueTestsData = [
   {
@@ -84,5 +84,34 @@ export const opData = [
     op: "div",
     param: new Complex(0, 1),
     expectedResult: "-2 - 3i"
-  }
+  },
 ];
+export const powData = [
+  {
+    in: new Complex(1, 2),
+    op: "pow",
+    param: 2,
+    expectedResult: "-3 + 4i"
+  },
+  {
+    in: new Complex(0, 1),
+    op: "pow",
+    param: 7,
+    expectedResult: "-i"
+  },{
+    in: new Complex(0, 1),
+    op: "pow",
+    param: 4,
+    expectedResult: "1"
+  }, {
+    in: new Complex(0, 1),
+    op: "pow",
+    param: 5,
+    expectedResult: "i"
+  }, {
+    in: new Complex(2, 2),
+    op: 'pow',
+    param: 6,
+    expectedResult: "-512i"
+  }
+]

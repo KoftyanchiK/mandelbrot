@@ -1,8 +1,8 @@
 // const data = require('./complex.testdata');
 // const Complex = require('../src/js/complex');
 // const {it} = require('chai');
-import { stringValueTestsData, opData } from './complex.testdata';
-import Complex from '../src/js/complex';
+import { stringValueTestsData, opData, powData } from './complex.testdata';
+import Complex from '../src/js/lib/complex';
 import { it, describe } from 'mocha';
 import chai from 'chai';
 const should = chai.should();
@@ -26,4 +26,11 @@ describe('Complex numbers class', () => {
       done();
     });
   });
+  powData.forEach(test => {
+    it(`Exponentiate ${test.in.getStringValue()} in ${test.param} with result: ${test.expectedResult}`, (done) => {
+      const textResult = Complex.getStringValue(test.in[test.op](test.param));
+      textResult.should.eql(test.expectedResult);
+      done();
+    });
+  })
 });
