@@ -19,19 +19,19 @@ self.addEventListener('message', (e) => {
 const start = (opts) => {
   isWorking = true;
   run(opts);
-}
+};
 
 const stop = () => {
   isWorking = false;
   self.postMessage({ isWorking: isWorking });
   self.close();
-}
+};
 
 const implementations = {
   class: classBelongsToMandelSet,
   proto: protoBelongsToMandelSet,
   plain: plainBelongsToMandelSet
-}
+};
 
 function run(opts) {
   const {
@@ -47,4 +47,4 @@ function run(opts) {
         self.postMessage({ belongs, x, y, isWorking });
     }
   }
-}
+};
