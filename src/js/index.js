@@ -6,8 +6,8 @@ import '../css/style.css';
 const debug = Debug('fractals:main')
 
 // Constants
-const CANVAS_WIDTH = 500;
-const CANVAS_HEIGHT = 500;
+const CANVAS_WIDTH = 100;
+const CANVAS_HEIGHT = 100;
 const MAGNIFICATION_FACTOR = 900;
 const PAN_X = 0;
 const PAN_Y = 0;
@@ -70,7 +70,7 @@ const workerMsgHandler = (e) => {
     ctx.fillStyle = 'rgb(0,0,0)';
     ctx.fillRect(e.data.x, e.data.y, 1, 1);
   } else {
-    ctx.fillStyle = `hsl(${belongs*0.52}, ${belongs}%, ${belongs}%)`;
+    ctx.fillStyle = `hsl(100, ${belongs*0.2}%, ${belongs}%)`;
     ctx.fillRect(e.data.x, e.data.y, 1, 1);
   }
   if(isWorking) {
@@ -78,7 +78,7 @@ const workerMsgHandler = (e) => {
     startButton.disabled = true;
   } else {
     stop = Date.now();
-    showModal(`Time: ${(stop - start) / 1000} seconds`);
+    showModal(`${impSelect.options[impSelect.options.selectedIndex].text} computed.`, `Elapsed time: ${(stop - start) / 1000} seconds`);
     stopButton.disabled = true;
     startButton.disabled = false;
   }
