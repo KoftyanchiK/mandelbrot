@@ -1,14 +1,16 @@
 export const showModal = (header, text) => {
-  const modalText = `
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <h4>${header}</h4>
-        <p>${text}</p>
-      </div>
-    </div>
-  `;
-  document.body.innerHTML += modalText;
-  const modal = document.getElementById('modal');
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+  const modalContent = document.createElement('div');
+  modalContent.className = 'modal-content'
+  const headerElement = document.createElement('h4');
+  headerElement.innerText = header;
+  const textElement = document.createElement('p');
+  textElement.innerText = text;
+  modalContent.appendChild(headerElement);
+  modalContent.appendChild(textElement);
+  modal.appendChild(modalContent);
+  document.body.appendChild(modal);
   const instance = M.Modal.init(modal, {
     onCloseEnd: () => {
       instance.destroy();
