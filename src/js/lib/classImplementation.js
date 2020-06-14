@@ -1,10 +1,10 @@
 import Complex from './complex';
 
-export const classBelongsToMandelSet = (x, y, iterations) => {
-  const result = new Complex(x, y);
-  let r = result;
+export const classBelongsToMandelSet = (x, y, iterations, treshold) => {
+  const initial = new Complex(x, y);
+  let r = initial;
   for(let i = 0; i < iterations; i++) {
-    r = r.mul(r).add(result);
+    r = r.mul(r).add(initial);
     if (r.re * r.im > treshold)
       return (i / iterations * 100); // In the Mandelbrot set
   }
