@@ -6,12 +6,13 @@ import '../css/style.css';
 const debug = Debug('fractals:main')
 
 // Constants
-const CANVAS_WIDTH = 100;
-const CANVAS_HEIGHT = 100;
-const MAGNIFICATION_FACTOR = 900;
-const PAN_X = 0;
-const PAN_Y = 0;
+const CANVAS_WIDTH = 600;
+const CANVAS_HEIGHT = 600;
+const MAGNIFICATION_FACTOR = 200;
+const PAN_X = 2;
+const PAN_Y = 1.5;
 const ITERATIONS = 100;
+const TRESHOLD = 5;
 
 // Create canvas
 const app = document.getElementById('app');
@@ -55,7 +56,7 @@ startButton.addEventListener('click', (e) => {
       panX: PAN_X,
       panY: PAN_Y,
       implementation: selectedValue,
-      treshold: 5
+      treshold: TRESHOLD
     });
     start = Date.now();
   }
