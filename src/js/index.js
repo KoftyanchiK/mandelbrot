@@ -62,7 +62,9 @@ startButton.addEventListener('click', (e) => {
 });
 
 stopButton.addEventListener('click', (e) => {
-  worker.postMessage({ cmd: 'stop' });
+  worker.terminate();
+  stopButton.disabled = true;
+  startButton.disabled = false;
 });
 
 const workerMsgHandler = (e) => {
