@@ -70,10 +70,10 @@ stopButton.addEventListener('click', (e) => {
 const workerMsgHandler = (e) => {
   const { isWorking, belongs } = e.data;
   if(belongs === 0) {
-    ctx.fillStyle = 'rgb(0,0,0)';
+    ctx.fillStyle = '#82b1ff';
     ctx.fillRect(e.data.x, e.data.y, 1, 1);
   } else {
-    ctx.fillStyle = `hsl(100, ${belongs*0.2}%, ${belongs}%)`;
+    ctx.fillStyle = `hsl(240, ${belongs*0.5}%, ${belongs + 10}%)`;
     ctx.fillRect(e.data.x, e.data.y, 1, 1);
   }
   if(isWorking) {
