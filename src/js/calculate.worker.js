@@ -35,13 +35,13 @@ const implementations = {
 
 function run(opts) {
   const {
-    width, height, magFactor, panX, panY, iterations, implementation
+    width, height, magFactor, panX, panY, iterations, implementation, treshold
   } = opts;
   const belongsFn = implementations[implementation];
   for(let x = 0; x < width; x++) {
     for(let y = 0; y < height; y++) {
       const belongs = belongsFn(x / magFactor - panX,
-        y / magFactor - panY, iterations);
+        y / magFactor - panY, iterations, treshold);
       ((x >= width - 1) && (y >= height - 1)) ?
         stop() :
         self.postMessage({ belongs, x, y, isWorking });

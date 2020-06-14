@@ -8,7 +8,7 @@ export const plainBelongsToMandelSet = (x, y, iterations) => {
     const tempImaginary = 2 * real * imaginary + y;
     real = tempReal;
     imaginary = tempImaginary;
-    if (real * imaginary > 5)
+    if (real * imaginary > treshold)
       return (i / iterations * 100); // In the Mandelbrot set
   }
   return 0;  // Not in the set

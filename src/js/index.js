@@ -54,7 +54,8 @@ startButton.addEventListener('click', (e) => {
       iterations: ITERATIONS,
       panX: PAN_X,
       panY: PAN_Y,
-      implementation: selectedValue
+      implementation: selectedValue,
+      treshold: 5
     });
     start = Date.now();
   }
