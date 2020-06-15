@@ -18,12 +18,14 @@ const MAGNIFICATION_FACTOR = 200;
 const PAN_X = 4;
 const PAN_Y = 2;
 const ITERATIONS = 100;
-const TRESHOLD = 5;
+const TRESHOLD = 10;
 
 const options = {
   compareMode: false,
   width: CANVAS_WIDTH,
   height: CANVAS_HEIGHT,
+  compWidth: CANVAS_WIDTH / 3,
+  compHeight: CANVAS_HEIGHT / 3,
   magFactor: MAGNIFICATION_FACTOR,
   iterations: ITERATIONS,
   panX: PAN_X,
