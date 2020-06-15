@@ -6,15 +6,6 @@ import '../css/style.css';
 
 const debug = Debug('fractals:main')
 
-// Constants
-const CANVAS_WIDTH = 600;
-const CANVAS_HEIGHT = 600;
-const MAGNIFICATION_FACTOR = 200;
-const PAN_X = 2;
-const PAN_Y = 1.5;
-const ITERATIONS = 100;
-const TRESHOLD = 5;
-
 // Create canvas
 const app = document.getElementById('app');
 const canvas = document.createElement('canvas');

@@ -1,4 +1,4 @@
-export const plainBelongsToMandelSet = (x, y, iterations) => {
+export const plainBelongsToMandelSet = (x, y, iterations, treshold) => {
   let real = x;
   let imaginary = y;
   for(let i = 0; i < iterations; i++) {

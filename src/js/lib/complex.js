@@ -1,4 +1,5 @@
 import Debug from 'debug';
+import { parse } from './parse';
 
 const debug = Debug('fractals:complex');
 const debugAdd = Debug('fractals:complex:add');
@@ -6,28 +7,8 @@ const debugSub = Debug('fractals:complex:sub');
 const debugMul = Debug('fractals:complex:mul');
 const debugDiv = Debug('fractals:complex:div');
 const debugPow = Debug('fractals:complex:pow');
-const debugParse = Debug('fractals:complex:parse');
 const debugStringValue = Debug('fractals:complex:stringValue');
 
-function parse(a, b) {
-  debugParse('a: ', a, 'b: ', b);
-  debugParse(`Type of 'a' param: ${typeof a}`);
-  if (a === undefined || a === null) {
-    z['re'] = 0;
-    z['im'] = 0;
-  } else {
-    switch (typeof a) {
-      case 'object':
-        return {re: a.re, im: a.im};
-      case 'string':
-        throw 'Parse string complex nunmber must be implemented in parse function';
-      case 'number':
-        return {re: a, im: b};
-      default:
-        return {re: 0, im: 0};
-    }
-  }
-}
 export default class Complex {
   constructor(...args) {
     const tmp = parse(...args);
