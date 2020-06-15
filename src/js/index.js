@@ -1,6 +1,7 @@
 import Debug from 'debug';
 import Worker from './calculate.worker';
 import { showModal } from './modal';
+import { getOpts, setOpts } from './settings';
 import '../css/style.css';
 
 const debug = Debug('fractals:main')
@@ -17,8 +18,8 @@ const TRESHOLD = 5;
 // Create canvas
 const app = document.getElementById('app');
 const canvas = document.createElement('canvas');
-canvas.width = CANVAS_WIDTH;
-canvas.height = CANVAS_HEIGHT;
+canvas.width = getOpts().width;
+canvas.height = getOpts().height;
 app.appendChild(canvas);
 const ctx = canvas.getContext('2d');
 
@@ -26,7 +27,7 @@ const ctx = canvas.getContext('2d');
 const startButton = document.getElementById('start');
 const stopButton = document.getElementById('stop');
 const impSelect = document.getElementById('impSelect');
-const impSelectInstance = M.FormSelect.init(impSelect);
+const impSelectInstance = M.FormSelect.init(impSelect, {classes: 'importantSelect'});
 
 stopButton.disabled = true;
 
@@ -43,26 +44,20 @@ startButton.addEventListener('click', (e) => {
   if(selectedValue === '') {
     showModal('No implementation selected', 'Please, select implementation to draw mandelbrot set');
   } else {
-    if(worker) {
-      worker.removeEventListener('message', workerMsgHandler);
-    }
-    worker.addEventListener('message', workerMsgHandler, false);
-    worker.postMessage({
-      cmd: 'start',
-      width: CANVAS_WIDTH,
-      height: CANVAS_HEIGHT,
-      magFactor: MAGNIFICATION_FACTOR,
-      iterations: ITERATIONS,
-      panX: PAN_X,
-      panY: PAN_Y,
-      implementation: selectedValue,
-      treshold: TRESHOLD
-    });
-    start = Date.now();
+  if(worker) {
+    worker.removeEventListener('message', workerMsgHandler);
+  }
+  worker.addEventListener('message', workerMsgHandler, false);
+  const options = Object.assign(getOpts(), {
+    cmd: 'start',
+    implementation: selectedValue
+  });
+  worker.postMessage(options);
+  start = Date.now();
   }
 });
 
-stopButton.addEventListener('click', (e) => {
+stopButton.addEventListener('click', () => {
   worker.terminate();
   stopButton.disabled = true;
   startButton.disabled = false;

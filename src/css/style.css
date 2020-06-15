@@ -1,7 +1,43 @@
 * {
   margin: 0;
   padding: 0;
-  background-color: rgb(63, 96, 146);
+  background-color: #3a84fc;
+  color: rgb(216, 216, 216);
+}
+
+#header {
+  margin-bottom: 0;
+  opacity: 0.2;
+  background: rgba(255, 0, 0, 0);
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+#header, #header *:not(button):not(ul) {
+  background: rgba(255, 0, 0, 0);
+  background-color: rgba(255, 0, 0, 0);
+}
+
+.importantSelect > ul {
+  background-color: #174286ec;
+}
+.importantSelect > ul > li:hover {
+  border: 1px solid black;
+  background-color: rgba(56, 149, 255, 0.479) !important;
+}
+
+#header > div > div * {
+  color: rgb(216, 216, 216)
+}
+
+#header:hover {
+  opacity: 1;
+}
+
+#settings {
+  display: none;
+  position: absolute;
 }
 
 #app {
@@ -10,4 +46,9 @@
 
 canvas {
   border: 1px solid white;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(0, 252, 21);
 }

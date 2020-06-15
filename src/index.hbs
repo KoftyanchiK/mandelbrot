@@ -4,30 +4,60 @@
     <meta charset="utf-8"/>
     <title>{{ htmlWebpackPlugin.options.title }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
-  <body>
-    <header class='row container center-align'>
-      <form action="#" class='col s12 valign-wrapper center-align'>
-        <div class='input-field col s6 offset-s1'>
+  <body class='row'>
+    <div id="settings" class='col s12'>
+      <div class="input-field col s2">
+        <input placeholder="Magnification" id="magFactor" type="text">
+        <label for="magFactor">Magnification</label>
+      </div>
+      <div class="input-field col s2">
+        <input placeholder="Max iterations" id="iterations" type="text">
+        <label for="iterations">Max iterations</label>
+      </div>
+      <div class="input-field col s2">
+        <input placeholder="Pan X" id="panX" type="text">
+        <label for="panX">Pan X</label>
+      </div>
+      <div class="input-field col s2">
+        <input placeholder="Pan Y" id="panY" type="text">
+        <label for="panY">Pan Y</label>
+      </div>
+      <div class="input-field col s2">
+        <input placeholder="Treshold" id="treshold" type="text">
+        <label for="treshold">Treshold</label>
+      </div>
+      <div class='col s2'>
+        <button id='applySettings' class='btn large'>Apply</button>
+      </div>
+    </div>
+    <div id='header' class='row center-align col s12'>
+      <div class='col s12 valign-wrapper center-align'>
+        <div class='input-field col s8'>
           <select id='impSelect' autocomplete="off">
-            <option value='' selected disabled>Select implementation</option>
+            <option value='proto' selected>Prototype implementation</option>
             <option value='class'>Class implementation</option>
-            <option value='proto'>Prototype implementation</option>
             <option value='plain'>Plain implementation</option>
           </select>
           <label>Select implementation</label>
         </div>
-        <div class='col s2 offset-s1'>
+        <div class='col s2'>
           <button id='start' class='btn large'>Start</button>
         </div>
-        <div class='col s2 offset-s1'>
+        <div class='col s2'>
           <button id='stop' class='btn large red'>Stop</button>
         </div>
-      </form>
-    </header>
-    <div class="divider"></div>
-    <div id='app' class='container row center-align'>
+        <div class='col s2'>
+          <button id='openSettings' class='btn large orange darken-2'>Settings</button>
+        </div>
+        <div class='col s2'>
+          <button id='about' class='btn large pink darken-3'>About</button>
+        </div>
+      </div>
+    </div>
+    <div id='app' class='row center-align'>
 
     </div>
   </body>
