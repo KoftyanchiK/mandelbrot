@@ -1,81 +1,82 @@
 import Debug from 'debug';
-import Worker from './calculate.worker';
+import { getOpts } from './settings';
+import { runSolo } from './soloMode';
+import { runCompare } from './compareMode';
 import { showModal } from './modal';
-import { getOpts, setOpts } from './settings';
+import config from './config';
 import '../css/style.css';
 
-const debug = Debug('fractals:main')
+const debug = Debug('fractals:main');
 
-// Create canvas
+localStorage.debug = 'fractals:worker';
+
+const aboutBtn = document.getElementById('about');
 const app = document.getElementById('app');
+const impSelect = document.getElementById('impSelect');
+const impSelectInstance = M.FormSelect.init(impSelect, {classes: 'importantSelect'});
+// Create canvases
 const canvas = document.createElement('canvas');
+canvas.id = 'soloCanvas';
 canvas.width = getOpts().width;
 canvas.height = getOpts().height;
 app.appendChild(canvas);
-const ctx = canvas.getContext('2d');
+for(const imp of config.implementations) {
+  const canvas = document.createElement('canvas');
+  canvas.id = `${imp}Canvas`;
+  canvas.style.display = 'none';
+  canvas.width = getOpts().compWidth;
+  canvas.height = getOpts().compHeight;
+  app.appendChild(canvas);
+}
+const soloCanvas = document.getElementById('soloCanvas');
+const classCanvas = document.getElementById('classCanvas');
+const protoCanvas = document.getElementById('protoCanvas');
+const plainCanvas = document.getElementById('plainCanvas');
 
-// Elements
-const startButton = document.getElementById('start');
-const stopButton = document.getElementById('stop');
-const aboutBtn = document.getElementById('about');
-const impSelect = document.getElementById('impSelect');
-const impSelectInstance = M.FormSelect.init(impSelect, {classes: 'importantSelect'});
-
-stopButton.disabled = true;
-
-impSelect.addEventListener('change', function (e) {
-  impSelect.value = e.target.value;
-});
-
-let worker = null;
-let start, stop = 0;
-startButton.addEventListener('click', (e) => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  const selectedValue = impSelect.value;
-  worker = new Worker();
-  if(worker) {
-    worker.removeEventListener('message', workerMsgHandler);
-  }
-  worker.addEventListener('message', workerMsgHandler, false);
-  const options = Object.assign(getOpts(), {
-    cmd: 'start',
-    implementation: selectedValue
-  });
-  worker.postMessage(options);
-  start = Date.now();
-});
-
-stopButton.addEventListener('click', () => {
-  worker.terminate();
-  stopButton.disabled = true;
-  startButton.disabled = false;
-});
 const aboutText = `Hover over top of screen to see controls.<br />
   Press "SETTINGS" button to set parameters for next run and see statistics for last runs.<br />
-  To close any modal window simply click outside of this window.<br />
+  Press "ABOUT" to see this window.<br />
+  To close any modal window simply click outside of this window or wait some time.<br />
   <a href='https://github.com'>This project on Github</a>
 `;
 aboutBtn.addEventListener('click', () => {
   showModal('About this page', aboutText, 10000);
 });
-showModal('Hello!', aboutText, 10000);
+const startButton = document.getElementById('start');
+const stopButton = document.getElementById('stop');
+startButton.addEventListener('click', (e) => {
+  if(!getOpts().compareMode) {
+    debug('Running solo mode');
+    runSolo();
+  } else {
+    debug('Running compare mode');
+    runCompare();
+  }
+});
 
-const workerMsgHandler = (e) => {
-  const { isWorking, belongs } = e.data;
-  if(belongs === 0) {
-    ctx.fillStyle = '#82b1ff';
-    ctx.fillRect(e.data.x, e.data.y, 1, 1);
-  } else {
-    ctx.fillStyle = `hsl(240, ${belongs*0.5}%, ${belongs + 10}%)`;
-    ctx.fillRect(e.data.x, e.data.y, 1, 1);
-  }
-  if(isWorking) {
-    stopButton.disabled = false;
-    startButton.disabled = true;
-  } else {
-    stop = Date.now();
-    showModal(`${impSelect.options[impSelect.options.selectedIndex].text} computed.`, `Elapsed time: ${(stop - start) / 1000} seconds`);
-    stopButton.disabled = true;
-    startButton.disabled = false;
-  }
+if(!document.cookie) {
+  showModal('Hello!', aboutText, 10000);
+  const d = new Date();
+  d.setTime(d.getTime() + (365*24*60*60*1000));
+  const expires = `expires=${d.toUTCString()};`;
+  const cookieString = `visited=true; ${expires} path=/; sameSite=strict;`;
+  document.cookie = cookieString;
 }
+const selectWrapper = document.getElementById('selectWrapper');
+document.addEventListener('changeMode', () => {
+  if(!getOpts().compareMode) {
+    showModal('Running solo mode', '', 1000);
+    selectWrapper.style.display = 'inline';
+    soloCanvas.style.display = 'block';
+    classCanvas.style.display = 'none';
+    protoCanvas.style.display = 'none';
+    plainCanvas.style.display = 'none';
+  } else {
+    showModal('Running compare mode', '', 1000);
+    selectWrapper.style.display = 'none';
+    soloCanvas.style.display = 'none';
+    classCanvas.style.display = 'block';
+    protoCanvas.style.display = 'block';
+    plainCanvas.style.display = 'block';
+  }
+});
