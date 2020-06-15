@@ -26,6 +26,7 @@ const ctx = canvas.getContext('2d');
 // Elements
 const startButton = document.getElementById('start');
 const stopButton = document.getElementById('stop');
+const aboutBtn = document.getElementById('about');
 const impSelect = document.getElementById('impSelect');
 const impSelectInstance = M.FormSelect.init(impSelect, {classes: 'importantSelect'});
 
@@ -41,9 +42,6 @@ startButton.addEventListener('click', (e) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   const selectedValue = impSelect.value;
   worker = new Worker();
-  if(selectedValue === '') {
-    showModal('No implementation selected', 'Please, select implementation to draw mandelbrot set');
-  } else {
   if(worker) {
     worker.removeEventListener('message', workerMsgHandler);
   }
@@ -54,7 +52,6 @@ startButton.addEventListener('click', (e) => {
   });
   worker.postMessage(options);
   start = Date.now();
-  }
 });
 
 stopButton.addEventListener('click', () => {
@@ -62,6 +59,15 @@ stopButton.addEventListener('click', () => {
   stopButton.disabled = true;
   startButton.disabled = false;
 });
+const aboutText = `Hover over top of screen to see controls.<br />
+  Press "SETTINGS" button to set parameters for next run and see statistics for last runs.<br />
+  To close any modal window simply click outside of this window.<br />
+  <a href='https://github.com'>This project on Github</a>
+`;
+aboutBtn.addEventListener('click', () => {
+  showModal('About this page', aboutText, 10000);
+});
+showModal('Hello!', aboutText, 10000);
 
 const workerMsgHandler = (e) => {
   const { isWorking, belongs } = e.data;

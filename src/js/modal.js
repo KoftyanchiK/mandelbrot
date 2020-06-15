@@ -1,4 +1,4 @@
-export const showModal = (header, text) => {
+export const showModal = (header, text, displayTime) => {
   const modal = document.createElement('div');
   modal.className = 'modal';
   const modalContent = document.createElement('div');
@@ -6,7 +6,7 @@ export const showModal = (header, text) => {
   const headerElement = document.createElement('h4');
   headerElement.innerText = header;
   const textElement = document.createElement('p');
-  textElement.innerText = text;
+  textElement.innerHTML = text;
   modalContent.appendChild(headerElement);
   modalContent.appendChild(textElement);
   modal.appendChild(modalContent);
@@ -15,7 +15,12 @@ export const showModal = (header, text) => {
     onCloseEnd: () => {
       instance.destroy();
       modal.parentNode.removeChild(modal);
+      clearTimeout(closeTimeout);
     }
   });
   instance.open();
+  const closeTimeout = setTimeout(() => {
+    if(instance)
+      instance.close();
+  }, displayTime || 2000);
 }
