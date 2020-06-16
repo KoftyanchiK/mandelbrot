@@ -29,13 +29,16 @@
         <input placeholder="Treshold" id="treshold" type="text">
         <label for="treshold">Treshold</label>
       </div>
-      <div class='col s2'>
+      <div class='col s2 offset-s3'>
         <button id='applySettings' class='btn large'>Apply</button>
+      </div>
+      <div class='col s6'>
+        <button id='compareModeBtn' class='btn large'>Enable compare mode</button>
       </div>
     </div>
     <div id='header' class='row center-align col s12'>
       <div class='col s12 valign-wrapper center-align'>
-        <div class='input-field col s8'>
+        <div id='selectWrapper' class='input-field col s8'>
           <select id='impSelect' autocomplete="off">
             <option value='proto' selected>Prototype implementation</option>
             <option value='class'>Class implementation</option>
@@ -59,6 +62,12 @@
     </div>
     <div id='app' class='row center-align'>
 
+    </div>
+    <div id='stats'>
+      <h6>Last runs</h6>
+      Class:&nbsp;<span id="classStat"></span>s<br />
+      Prototype:&nbsp;<span id="protoStat"></span>s<br />
+      Plain:&nbsp;<span id="plainStat"></span>s<br />
     </div>
   <script src="js/main.js"></script></body>
 </html>
