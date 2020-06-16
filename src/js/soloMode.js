@@ -31,7 +31,9 @@ export function runSolo() {
       startButton.disabled = true;
     } else {
       stop = Date.now();
-      showModal(`${impSelect.options[impSelect.options.selectedIndex].text} computed.`, `Elapsed time: ${(stop - start) / 1000} seconds`);
+      const diff = (stop - start) / 1000;
+      showModal(`${impSelect.options[impSelect.options.selectedIndex].text} computed.`, `Elapsed time: ${diff} seconds`);
+      setStat(impSelect.value, diff);
       stopButton.disabled = true;
       startButton.disabled = false;
     }
