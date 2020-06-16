@@ -37,13 +37,14 @@ const aboutText = `Hover over top of screen to see controls.<br />
   Press "SETTINGS" button to set parameters for next run and see statistics for last runs.<br />
   Press "ABOUT" to see this window.<br />
   To close any modal window simply click outside of this window or wait some time.<br />
+  To see the difference in browsers run it in Firefox and Safari/Chrome.
   <a href='https://github.com'>This project on Github</a>
 `;
 aboutBtn.addEventListener('click', () => {
   showModal('About this page', aboutText, 10000);
 });
 const startButton = document.getElementById('start');
-const stopButton = document.getElementById('stop');
+
 startButton.addEventListener('click', (e) => {
   if(!getOpts().compareMode) {
     debug('Running solo mode');
