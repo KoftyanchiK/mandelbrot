@@ -37,6 +37,8 @@ const aboutText = `Hover over top of screen to see controls.<br />
   Press "SETTINGS" button to set parameters for next run and see statistics for last runs.<br />
   Press "ABOUT" to see this window.<br />
   To close any modal window simply click outside of this window or wait some time.<br />
+  To see the difference in implementations go to SETTINGS->Enable/Disable compare mode.<br />
+  In compare mode you can scroll over the page to see process in live.<br />
   To see the difference in browsers run it in Firefox and Safari/Chrome.<br />
   <a href='https://github.com'>This project on Github</a>
 `;
