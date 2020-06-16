@@ -1,0 +1,1 @@
+# Mandelbrot set in different implementations with JS
