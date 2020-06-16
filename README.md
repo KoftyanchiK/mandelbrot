@@ -4,9 +4,12 @@ Later I added WebWorkers to compute a set.
 I wanted to compare which of the implementations would work faster. You can see the results by visiting mrkk.dev or manually starting the project. Do not forget to test the work in different browsers, as the rendering speed differs very much.
 # Build and run
 - ```git clone https://github.com/KoftyanchiK/mandelbrot.git```
+- ```cd mandelbrot```
 - ```npm install```
 - ```npm start```
 - And visit `http://localhost:8080`
 
 ## TODOs
-Fix some bugs
+- Fix some bugs
+- Maybe add memoisation
+- Send chunks of data from worker instead of sending it by one pixel
