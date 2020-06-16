@@ -39,7 +39,6 @@ export function runCompare() {
     if(!isWorking) {
       stop = Date.now();
       const diff = (stop - start) / 1000;
-      showModal(`${imp} computed.`, `Elapsed time: ${diff} seconds`);
       setStat(imp, diff);
     }
     const clw = workersStatus.class;

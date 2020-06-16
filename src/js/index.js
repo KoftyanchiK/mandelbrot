@@ -44,8 +44,9 @@ aboutBtn.addEventListener('click', () => {
   showModal('About this page', aboutText, 10000);
 });
 const startButton = document.getElementById('start');
+document.getElementById('stop').disabled = true; //disable stop button by default
 
-startButton.addEventListener('click', (e) => {
+startButton.addEventListener('click', () => {
   if(!getOpts().compareMode) {
     debug('Running solo mode');
     runSolo();
