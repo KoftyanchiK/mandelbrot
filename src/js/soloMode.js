@@ -1,6 +1,7 @@
 import { getOpts } from './settings';
 import Worker from './calculate.worker';
 import { showModal } from './modal';
+import { setStat } from './stat';
 
 export function runSolo() {
   // Elements
