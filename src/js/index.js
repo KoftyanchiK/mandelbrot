@@ -40,7 +40,7 @@ const aboutText = `Hover over top of screen to see controls.<br />
   To see the difference in implementations go to SETTINGS->Enable/Disable compare mode.<br />
   In compare mode you can scroll over the page to see process in live.<br />
   To see the difference in browsers run it in Firefox and Safari/Chrome.<br />
-  <a href='https://github.com/KoftyanchiK/mandelbrot.git'>This project on Github</a>
+  <a href='https://github.com/koftyan/mandelbrot.git'>This project on Github</a>
 `;
 aboutBtn.addEventListener('click', () => {
   showModal('About this page', aboutText, 10000);
