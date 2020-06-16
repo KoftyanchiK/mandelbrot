@@ -6,7 +6,7 @@ I wanted to compare which of the implementations would work faster. You can see 
 - ```git clone https://github.com/KoftyanchiK/mandelbrot.git```
 - ```npm install```
 - ```npm start```
-And visit `http://localhost:8080`
+- And visit `http://localhost:8080`
 
 ## TODOs
 Fix some bugs
