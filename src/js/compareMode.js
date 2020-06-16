@@ -16,11 +16,19 @@ export function runCompare() {
   // Elements
   const startButton = document.getElementById('start');
   const stopButton = document.getElementById('stop');
+  stopButton.disabled = false;
+  startButton.disabled = true;
 
-  stopButton.disabled = true;
   let start, stop = 0;
+  //Shows is worker busy
+  const workersStatus = {
+    class: false,
+    proto: false,
+    plain: false
+  }
   const workerMsgHandler = (ctx, imp, e) => {
     const { isWorking, belongs } = e.data;
+    workersStatus[imp] = isWorking;
     if(belongs === 0) {
       ctx.fillStyle = '#82b1ff';
       ctx.fillRect(e.data.x, e.data.y, 1, 1);
@@ -28,22 +36,27 @@ export function runCompare() {
       ctx.fillStyle = `hsl(240, ${belongs*0.5}%, ${belongs + 10}%)`;
       ctx.fillRect(e.data.x, e.data.y, 1, 1);
     }
-    if(isWorking) {
-      stopButton.disabled = false;
-      startButton.disabled = true;
-    } else {
+    if(!isWorking) {
       stop = Date.now();
-      showModal(`${imp} computed.`, `Elapsed time: ${(stop - start) / 1000} seconds`);
+      const diff = (stop - start) / 1000;
+      showModal(`${imp} computed.`, `Elapsed time: ${diff} seconds`);
+      setStat(imp, diff);
+    }
+    const clw = workersStatus.class;
+    const prw = workersStatus.proto;
+    const plw = workersStatus.plain;
+    //If all workers not in work
+    if(!clw && !prw && !plw) {
+      console.log('Work donwe!');
       stopButton.disabled = true;
       startButton.disabled = false;
-    }
-  }
+    } 
+  };
   const workers = {};
   for(const imp of implementations) {
     const { canvas, ctx }= canvases[imp];
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     workers[imp] = new Worker();
-    console.log(workers[imp]);
     if(workers[imp]) {
       workers[imp].removeEventListener('message', workerMsgHandler.bind(this, canvases[imp].ctx, imp));
     }
