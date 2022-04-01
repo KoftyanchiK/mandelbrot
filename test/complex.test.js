@@ -7,6 +7,8 @@ import { it, describe } from 'mocha';
 import chai from 'chai';
 const should = chai.should();
 
+// test
+
 describe('Complex numbers class', () => {
   stringValueTestsData.forEach(test => {
     it(`Shows string value correctly for ${JSON.stringify(test.in)} => ${test.expectedResult}`, (done) => {
